@@ -39,15 +39,6 @@ public class NadadorController {
         return "nadador/add";
     }
 
-    @RequestMapping(value="/add", method=RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("nadador") Nadador nadador,
-                                   BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-        return "nadador/add";
-        nadadorDao.addNadador(nadador);
-        return "redirect:list";
-    }
-
     @RequestMapping(value="/update/{nom}", method = RequestMethod.GET)
     public String editNadador(Model model, @PathVariable String nom) {
         model.addAttribute("nadador", nadadorDao.getNadador(nom));
@@ -68,6 +59,17 @@ public class NadadorController {
     public String processDelete(@PathVariable String nom) {
         nadadorDao.deleteNadador(nom);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value="/add", method=RequestMethod.POST)
+    public String processAddSubmit(@ModelAttribute("nadador") Nadador nadador,
+                                   BindingResult bindingResult) {
+        NadadorValidator nadadorValidator = new NadadorValidator();
+        nadadorValidator.validate(nadador, bindingResult);
+        if (bindingResult.hasErrors())
+        return "nadador/add";
+        nadadorDao.addNadador(nadador);
+        return "redirect:list";
     }
 
 }
