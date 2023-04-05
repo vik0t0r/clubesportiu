@@ -13,15 +13,15 @@
   <table>
     <tr>
       <td><label>Nom</label></td>
-      <td><input type="text" th:field="*{nom}" /></td>
+      <td><input type="text" th:field="*{nom}" readonly="readonly" /></td>
     </tr>
     <tr>
       <td><label>Num. Federat</label></td>
-      <td><input type="text" th:field="*{numFederat}" /></td>
+      <td><input type="text" th:field="*{numFederat}" minlength="10" maxlength="10" /></td>
     </tr>
     <tr>
       <td><label>Pais</label></td>
-      <td><input type="text" th:field="*{pais}" /></td>
+      <td><input type="text" th:field="*{pais}" minlength="1" maxlength="20"/></td>
     </tr>
     <tr>
       <td><label>Edat</label></td>
