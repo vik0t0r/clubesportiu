@@ -1,5 +1,7 @@
 package es.uji.ei1027.clubesportiu.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -9,6 +11,8 @@ public class Prova {
     private String nom;
     private String descripcio;
     private String tipus;
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate data;
     public Prova() {
     }

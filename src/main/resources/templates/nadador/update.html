@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
   <title>Crear nou nadador</title>
   <meta charset="UTF-8" />
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+        th:href="@{/css/natacio.css}"/>
 </head>
 <body>
+<div layout:fragment="content">
 <h2>Nou nadador</h2>
 <form action="#" th:action="@{/nadador/update}"
       th:object="${nadador}" method="post">
@@ -25,16 +28,24 @@
     </tr>
     <tr>
       <td><label>Edat</label></td>
-      <td><input type="number" th:field="*{edat}" /></td>
+      <td><input type="number" th:field="*{edat}" th:errors="*{edat}" class="error"/></td>
     </tr>
     <tr>
       <td><label>Genere</label></td>
-      <td><input type="text" th:field="*{genere}" /></td>
+      <td> <select class="form_control" type="text" th:field="*{genere}">
+        <!--option value="No seleccionat">Selecciona el gènere</option-->
+        <option th:each="gendervalue : ${genderList}"
+                th:value="${gendervalue}"
+                th:text="${gendervalue}"></option>
+      </select>
+      </td>
+      <td th:if="${#fields.hasErrors('genere')}" th:errors="*{genere}" class="error"></td>
     </tr>
     <tr>
       <td colspan="2"><input type="submit" value="Update nadador" /></td>
     </tr>
   </table>
 </form>
+</div>
 </body>
 </html>

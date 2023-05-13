@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>EI1027</title>
     <meta charset="UTF-8"/>
     <!-- Afegim una fulla d’estil (Bootstrap) -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/natacio.css"
+          th:href="@{/css/natacio.css}"/>
 </head>
 <body>
+<div layout:fragment="content">
 <h1>Prova del controlador</h1>
 <p><b>Nadador:</b> <span th:text="${nadador.nom}"> </span></p>
 <p><b>Num. federat:</b> <span th:text="${nadador.numFederat}"> </span></p>
@@ -15,5 +19,6 @@
 <p><b>Categoria:</b> <span th:text="${categoria}"></span></p>
 
 <a href="/">Tornar</a>
+</div>
 </body>
 </html>

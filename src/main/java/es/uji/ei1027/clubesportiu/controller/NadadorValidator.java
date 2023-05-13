@@ -4,6 +4,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import es.uji.ei1027.clubesportiu.model.Nadador;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class NadadorValidator implements Validator {
     @Override
     public boolean supports(Class<?> cls) {
@@ -22,5 +25,9 @@ public class NadadorValidator implements Validator {
             errors.rejectValue("edat", "outOfRange",
                     "Els nadadors han de ser majors de 15 anys");
         }
+        List<String> valors = Arrays.asList("Femeni", "Masculi");
+        if (!valors.contains(nadador.getGenere()))
+            errors.rejectValue("genere", "valor incorrecte",
+                    "Deu ser: Femeni o Masculi");
     }
 }
